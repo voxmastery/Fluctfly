@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fluctfly</title>
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='13'>&#129715;</text></svg>">
+<script type="importmap">
+{
+  "imports": {
+    "three": "/vendor/three/build/three.module.js",
+    "three/addons/": "/vendor/three/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+
+<canvas id="stage"></canvas>
+
+<div id="boot">
+  <div class="boot-inner">
+    <div class="boot-title">FLUCTFLY</div>
+    <div class="boot-bar"><i></i></div>
+    <div class="boot-note">loading connectome</div>
+  </div>
+</div>
+
+<header id="masthead">
+  <h1>FLUCTFLY</h1>
+  <p class="sub">FluctlightDB memory on the FlyWire <i>Drosophila melanogaster</i> connectome</p>
+  <dl class="stats">
+    <div><dt>neurons</dt><dd id="stat-neurons">–</dd></div>
+    <div><dt>connections</dt><dd id="stat-edges">–</dd></div>
+    <div><dt>memories</dt><dd id="stat-memories">–</dd></div>
+    <div><dt>lit</dt><dd id="stat-lit">0</dd></div>
+  </dl>
+</header>
+
+<section id="console">
+  <div class="tabs" role="tablist">
+    <button role="tab" aria-selected="true" data-tab="recall">Recall</button>
+    <button role="tab" aria-selected="false" data-tab="write">Write</button>
+    <button role="tab" aria-selected="false" data-tab="view">View</button>
+  </div>
+
+  <div class="panel" data-panel="recall">
+    <label for="cue">Cue</label>
+    <div class="row">
+      <input id="cue" type="text" placeholder="what does the user prefer?" autocomplete="off">
+      <button id="go" class="primary">Activate</button>
+    </div>
+    <p class="hint">The cue ignites afferent neurons and propagates across real synapses.
+      Memories are ranked by how much their engram overlaps the result.</p>
+    <ol id="hits"></ol>
+  </div>
+
+  <div class="panel" data-panel="write" hidden>
+    <label for="mem">Experience</label>
+    <textarea id="mem" rows="3" placeholder="The user prefers dark mode in the editor"></textarea>
+    <div class="row">
+      <input id="ctx" type="text" placeholder="context" autocomplete="off">
+      <input id="prov" type="text" placeholder="provenance" autocomplete="off">
+    </div>
+    <div class="row slider">
+      <label for="sal">salience</label>
+      <input id="sal" type="range" min="0" max="1" step="0.05" value="0.6">
+      <output id="sal-out">0.60</output>
+    </div>
+    <div class="row">
+      <label class="check"><input id="ver" type="checkbox"> verified evidence</label>
+      <button id="write" class="primary">Bind to neurons</button>
+    </div>
+    <p class="hint">Writing runs the same propagation and stores the neurons that fired —
+      the memory's engram.</p>
+  </div>
+
+  <div class="panel" data-panel="view" hidden>
+    <label for="colour">Colour by</label>
+    <select id="colour">
+      <option value="class">cell class</option>
+      <option value="nt">neurotransmitter</option>
+      <option value="side">hemisphere</option>
+      <option value="depth">anterior–posterior depth</option>
+    </select>
+    <div class="row slider">
+      <label for="bloom">glow</label>
+      <input id="bloom" type="range" min="0" max="2" step="0.05" value="0.7">
+      <output id="bloom-out">0.90</output>
+    </div>
+    <div class="row slider">
+      <label for="size">neuron size</label>
+      <input id="size" type="range" min="0.3" max="4" step="0.1" value="1.4">
+      <output id="size-out">1.4</output>
+    </div>
+    <label class="check"><input id="spin" type="checkbox" checked> auto-rotate</label>
+    <label class="check"><input id="arcs" type="checkbox" checked> draw active synapses</label>
+    <div id="legend"></div>
+  </div>
+</section>
+
+<aside id="inspector" hidden>
+  <button id="inspector-close" aria-label="close">×</button>
+  <h2 id="ins-type">—</h2>
+  <dl id="ins-body"></dl>
+  <a id="ins-link" target="_blank" rel="noopener">open in FlyWire Codex →</a>
+</aside>
+
+<footer id="provenance">
+  <span id="prov-dataset">—</span>
+  <span id="prov-mode"></span>
+</footer>
+
+<script type="module" src="/src/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fluctfly"
+version = "0.1.0"
+description = "FluctlightDB agent memory running on the FlyWire Drosophila connectome"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [{ name = "voxmastery" }]
+keywords = ["connectome", "flywire", "drosophila", "agent-memory", "fluctlightdb", "threejs"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering :: Bio-Informatics",
+  "Topic :: Scientific/Engineering :: Visualization",
+]
+dependencies = ["numpy>=1.24"]
+
+[project.optional-dependencies]
+# Only the pack builder needs to read the Feather connection table.
+build = ["pyarrow>=14"]
+# Semantic cues instead of hashed ones.
+embed = ["sentence-transformers>=2.2"]
+# The real thing, mirrored alongside the connectome.
+fluctlight = ["fluctlightdb[native]>=0.5.21"]
+dev = ["pytest>=7"]
+
+[project.scripts]
+fluctfly = "fluctfly.__main__:main"
+
+[project.urls]
+Homepage = "https://github.com/voxmastery/Fluctfly"
+FluctlightDB = "https://github.com/voxmastery/FluctlightDB"
+FlyWire = "https://flywire.ai"
+
+[tool.setuptools]
+packages = ["fluctfly"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,21 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+# Anchored to the repository root: web/vendor/three/build/ must stay tracked.
+/dist/
+/build/
+
+# Raw FlyWire downloads, and the large generated packs (rebuild with `make pack`).
+# The mushroom-body pack is small enough to ship, so the viewer runs on a
+# fresh clone with no download.
+data/raw/
+data/packs/*
+!data/packs/mushroom_body/
+*.feather
+*.tsv
+!docs/**/*.tsv
+
+.DS_Store
+.fluctlight/

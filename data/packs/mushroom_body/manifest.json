@@ -1,0 +1,62 @@
+{
+  "dataset": "FlyWire FAFB v783 (adult female Drosophila melanogaster)",
+  "subset": "mushroom_body",
+  "min_synapses": 5,
+  "vocab": {
+    "super_class": [
+      "central"
+    ],
+    "cell_class": [
+      "ALPN",
+      "DAN",
+      "Kenyon_Cell",
+      "MBIN",
+      "MBON"
+    ]
+  },
+  "bounds_um": {
+    "min": [
+      -197.25,
+      -57.63,
+      -166.95
+    ],
+    "max": [
+      187.01,
+      215.91,
+      64.05
+    ]
+  },
+  "sources": [
+    "Dorkenwald et al., Nature 634, 124-138 (2024) - connectome",
+    "Schlegel et al., Nature 634, 139-152 (2024) - annotations",
+    "Eckstein, Bates et al., Cell 187, 2574-2594 (2024) - neurotransmitters"
+  ],
+  "license": "FlyWire data released under CC BY 4.0",
+  "format_version": 1,
+  "n_neurons": 6293,
+  "n_edges": 69427,
+  "arrays": {
+    "pos": "pos.f32",
+    "attr": "attr.u8",
+    "root_ids": "root_ids.u64",
+    "indptr": "indptr.u32",
+    "indices": "indices.u32",
+    "weight": "weight.f32",
+    "syn": "syn.u16"
+  },
+  "nt_order": [
+    "acetylcholine",
+    "glutamate",
+    "gaba",
+    "dopamine",
+    "serotonin",
+    "octopamine",
+    "unknown"
+  ],
+  "side_order": [
+    "left",
+    "right",
+    "center",
+    "na"
+  ]
+}
